@@ -27,7 +27,7 @@ pub async fn current_skater_stats(client : &Puck, catagory : &str) -> Result<Ind
 }
 
 /// GET current stats per season and game type, optional catagory 
-pub async fn current_skater_stats_season_game_type(client : &Puck,season : &str, game_type : &str, catagory : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
+pub async fn current_skater_stats_season_game_type(client : &Puck, season : &str, game_type : &str, catagory : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 

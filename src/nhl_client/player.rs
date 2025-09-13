@@ -96,3 +96,34 @@ pub async fn player_game_log_now(client : &Puck, player_id : &str) -> Result<Ind
 
     Ok(obj)
 }
+
+
+pub async fn player_spotlight(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
+    // example >>>>>>>
+    // player_id = 8478402
+    // 
+    //
+    // seasonId ::
+    // gameTypeId ::
+    // playerStatsSeasons ::
+    // gameLog ::
+
+    let request_url = format!("https://api-web.nhle.com/v1/player-spotlight");
+    println!("{}", request_url);
+    
+    let response = client.get_client.get(request_url).send().await?;
+    let incoming_text = response.text().await.unwrap();
+
+    // Deserialize into IndexMap to preserve insertion order
+    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
+    if client.print_keys{
+        for key in obj.keys() {
+                println!("{} :: ", key);
+            } 
+
+    }
+    
+
+    Ok(obj)
+}
+
