@@ -71,7 +71,9 @@ async fn main() -> Result<(), reqwest::Error> {
         // client.get_player_career_stats("8478402").await?;
         // client.get_player_game_log("8478402", "20232024", "2").await?;
         //client.get_player_game_log_now("8478402").await?;
-        client.get_current_skater_stats("goals").await?;
+        // client.get_current_skater_stats("goals").await?;
+        //client.get_current_skater_stats_season_game_type("20242025", "2", "").await?;
+        client.get_current_goalie_stats("").await?;
     }
     
     
