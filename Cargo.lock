@@ -636,7 +636,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "nhl_stats"
+name = "nhl_data"
 version = "0.1.0"
 dependencies = [
  "indexmap",

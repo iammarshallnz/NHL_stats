@@ -11,13 +11,9 @@ mod game;
 
 use serde_json::Value;
 use indexmap::IndexMap;
+use crate::Puck;
 
 
-pub struct Puck{
-    get_client : reqwest::Client,
-    print_keys : bool,
-    api_limit : i32,
-}
 /// # Puck util's
 /// 
 impl Puck {
@@ -26,7 +22,7 @@ impl Puck {
     /// # Example
     /// 
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// let client = Puck::new();
     /// ```
     pub fn new() -> Puck{
@@ -41,7 +37,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// let client = Puck::new().set_print(true);
     /// ```
     pub fn set_print(mut self, setting : bool) -> Puck{
@@ -52,7 +48,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// let client = Puck::new();
     /// let reqwest_client = client.open();
     /// ```
@@ -72,7 +68,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -92,7 +88,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -110,7 +106,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -125,7 +121,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -150,7 +146,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -170,7 +166,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -194,7 +190,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -214,7 +210,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -234,7 +230,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -252,7 +248,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -267,7 +263,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -290,7 +286,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -308,7 +304,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -328,7 +324,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -346,7 +342,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -369,7 +365,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -388,7 +384,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -406,7 +402,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -424,7 +420,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -444,7 +440,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -462,7 +458,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -477,7 +473,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -500,7 +496,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -518,7 +514,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -536,7 +532,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -559,7 +555,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -578,7 +574,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -596,7 +592,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -615,7 +611,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -634,7 +630,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -652,7 +648,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -667,7 +663,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -685,7 +681,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -700,7 +696,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();
@@ -718,7 +714,7 @@ impl Puck {
     ///
     /// # Example
     /// ```
-    /// use nhl_stats::nhl_client::Puck;
+    /// use nhl_data::Puck;
     /// #[tokio::main]
     /// async fn main() {
     ///     let client = Puck::new();

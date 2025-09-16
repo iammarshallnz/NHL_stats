@@ -1,7 +1,11 @@
 [package]
-name = "nhl_stats"
+name = "nhl_data"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "A way to call the NHL api for rust programs"
+repository = "https://github.com/iammarshallnz/nhl_data"
+authors = ["Marshall Inch"]
 
 [dependencies]
 reqwest = { version = "0.12", features = ["json"] }
