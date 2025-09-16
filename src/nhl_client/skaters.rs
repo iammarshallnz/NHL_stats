@@ -14,14 +14,20 @@ pub async fn current_skater_stats(client : &Puck, catagory : &str) -> Result<Ind
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
+
+    if client.print_keys {
         for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+            println!("{} :: ", key);
+        }
     }
-    println!("{:#?}", obj);
+    
 
     Ok(obj)
 }
@@ -37,14 +43,20 @@ pub async fn current_skater_stats_season_game_type(client : &Puck, season : &str
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
+
+    if client.print_keys {
         for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+            println!("{} :: ", key);
+        }
     }
-    println!("{:#?}", obj);
+    
 
     Ok(obj)
 }

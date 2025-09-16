@@ -3,12 +3,16 @@ pub use indexmap::IndexMap;
 
 use crate::nhl_client::Puck;
 
-/// Get current team standings 
-pub async fn team_standings(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
+
+
+/// #### Get Play By Play
+/// - ** Retrieve play-by-play information for a specific game.**
+
+pub async fn play_by_play(client : &Puck, game_id : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings/now");
+    let request_url = format!("https://api-web.nhle.com/v1/gamecenter/{game_id}/play-by-play");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -30,13 +34,15 @@ pub async fn team_standings(client : &Puck) -> Result<IndexMap<String, Value>, r
     
 
     Ok(obj)
-}
-/// get standings for specific date; date format : 2023-11-10
-pub async fn team_standings_date(client : &Puck, date : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
+}  
+/// #### Get Landing
+/// - ** Retrieve landing information for a specific game.**
+
+pub async fn landing_page(client : &Puck, game_id : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings/{date}");
+    let request_url = format!("https://api-web.nhle.com/v1/gamecenter/{game_id}/landing");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -58,15 +64,19 @@ pub async fn team_standings_date(client : &Puck, date : &str) -> Result<IndexMap
     
 
     Ok(obj)
-}
+}  
+/// #### Get Partner Game Odds
+/// - **  Retrieve odds for games in a specific country as of the current moment.**
+/// Parameters:
+
+/// 'country-code' (string) - Country code
 
 
-/// get information for each season's standings
-pub async fn team_standings_season(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
+pub async fn game_odds(client : &Puck, country_code : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings-season");
+    let request_url = format!("https://api-web.nhle.com/v1/partner-game/{country_code}/now");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -86,6 +96,5 @@ pub async fn team_standings_season(client : &Puck) -> Result<IndexMap<String, Va
         }
     }
     
-
     Ok(obj)
-}
+}  

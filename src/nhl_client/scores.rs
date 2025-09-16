@@ -3,12 +3,16 @@ pub use indexmap::IndexMap;
 
 use crate::nhl_client::Puck;
 
-/// Get current team standings 
-pub async fn team_standings(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
+
+
+/// #### Get Daily Scores As of Now
+/// - ** Retrieve daily scores as of the current moment.**
+
+pub async fn scores_now(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings/now");
+    let request_url = format!("https://api-web.nhle.com/v1/score/now");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -30,13 +34,16 @@ pub async fn team_standings(client : &Puck) -> Result<IndexMap<String, Value>, r
     
 
     Ok(obj)
-}
-/// get standings for specific date; date format : 2023-11-10
-pub async fn team_standings_date(client : &Puck, date : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
+}  
+
+/// #### Get Daily Scores by Date
+/// - ** Retrieve daily scores for a specific date.**
+/// - **'date' (string) - Date in YYYY-MM-DD format**
+pub async fn scores_date(client : &Puck, date : &str) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings/{date}");
+    let request_url = format!("https://api-web.nhle.com/v1/score/{date}");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -58,15 +65,15 @@ pub async fn team_standings_date(client : &Puck, date : &str) -> Result<IndexMap
     
 
     Ok(obj)
-}
+}   
 
-
-/// get information for each season's standings
-pub async fn team_standings_season(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
+/// #### Get Scoreboard
+/// - ** Retrieve the overall scoreboard as of the current moment.**
+pub async fn scoreboard(client : &Puck) -> Result<IndexMap<String, Value>, reqwest::Error> {
     
     
 
-    let request_url = format!("https://api-web.nhle.com/v1/standings-season");
+    let request_url = format!("https://api-web.nhle.com/v1/scoreboard/now");
     println!("{}", request_url);
     
     let response = client.get_client.get(request_url).send().await?;
@@ -88,4 +95,6 @@ pub async fn team_standings_season(client : &Puck) -> Result<IndexMap<String, Va
     
 
     Ok(obj)
-}
+}   
+
+

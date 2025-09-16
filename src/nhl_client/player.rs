@@ -22,13 +22,20 @@ pub async fn player_career_stats(client : &Puck, player_id : &str) -> Result<Ind
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
+
+    if client.print_keys {
         for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+            println!("{} :: ", key);
+        }
     }
+    
 
     Ok(obj)
 }
@@ -55,14 +62,20 @@ pub async fn player_game_log(client : &Puck, player_id : &str, season : &str, ga
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
-        for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
 
+    if client.print_keys {
+        for key in obj.keys() {
+            println!("{} :: ", key);
+        }
     }
+    
     
 
     Ok(obj)
@@ -84,14 +97,20 @@ pub async fn player_game_log_now(client : &Puck, player_id : &str) -> Result<Ind
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
-        for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
 
+    if client.print_keys {
+        for key in obj.keys() {
+            println!("{} :: ", key);
+        }
     }
+    
     
 
     Ok(obj)
@@ -114,14 +133,20 @@ pub async fn player_spotlight(client : &Puck) -> Result<IndexMap<String, Value>,
     let response = client.get_client.get(request_url).send().await?;
     let incoming_text = response.text().await.unwrap();
 
-    // Deserialize into IndexMap to preserve insertion order
-    let obj: IndexMap<String, Value> = serde_json::from_str(&incoming_text).unwrap();
-    if client.print_keys{
-        for key in obj.keys() {
-                println!("{} :: ", key);
-            } 
+    // Parse as Value first
+    let value: Value = serde_json::from_str(&incoming_text).unwrap();
+    let obj: IndexMap<String, Value> = match value {
+        Value::Object(map) => map.into_iter().collect(),
+        Value::Array(arr) => arr.into_iter().enumerate().map(|(i, v)| (i.to_string(), v)).collect(),
+        _ => IndexMap::new(),
+    };
 
+    if client.print_keys {
+        for key in obj.keys() {
+            println!("{} :: ", key);
+        }
     }
+    
     
 
     Ok(obj)
