@@ -11,7 +11,7 @@ has become obsolete and now
 is in use. The currently available crates for NHL statistics all seem to use the former. 
 As part of learning Rust I though this would be a good small scale project to test myself on what is within the rust-book. 
 The project is almost a 1 to 1 of [Zmalski's nhl api referance guide](https://github.com/Zmalski/NHL-API-Reference) so thanks to him for documenting all of this.
-There is some stuff missing from this guide, namely: networking info, steam info and playoff info. 
+There is some stuff missing from this guide, namely: networking info, stream info and playoff info. 
 
 ## Design Goals
 
